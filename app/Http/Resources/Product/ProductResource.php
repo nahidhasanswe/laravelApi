@@ -33,7 +33,8 @@ class ProductResource extends Resource
             'stock' => $this->stock == 0 ? 'Out of Stock' : $this->stock,
             'rating' => $this->reviews->count() > 0 ? round($this->reviews->sum('star')/$this->reviews->count(),2) : 'Not Review Yet',
             'href' => [
-                'reviews'=> route('reviews.index',$this->id)
+                'reviews'=> route('reviews.index',$this->id),
+                'product'=> route('products.show',$this->id)
             ]
         ];
     }
