@@ -53,7 +53,10 @@ class ProductController extends Controller
         $product->discount = $request->discount;
         $product->save();
 
-        return response(['message'=>'Successfully Added new Products'],201);
+        return response([
+            'message'=>'Successfully Added new Products',
+            'data' => new ProductResource($product)
+        ],201);
     }
 
     /**
@@ -87,7 +90,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+
+        return response([
+            'message'=>'Successfully Updated Products',
+            'data' => new ProductResource($product)
+        ],200);
     }
 
     /**
